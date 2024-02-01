@@ -17,6 +17,7 @@ function YoHeader({
         padding: 0,
         background: colorBgContainer,
         borderBottom: "1px solid #e5e7eb",
+        userSelect: "none",
       }}
     >
       <div className="flex justify-between items-center px-[20px]">

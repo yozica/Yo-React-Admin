@@ -43,7 +43,14 @@ function YoAvatar() {
   ];
 
   return (
-    <Dropdown menu={{ items, onClick }} placement="bottomRight" arrow>
+    <Dropdown
+      overlayStyle={{
+        userSelect: "none",
+      }}
+      menu={{ items, onClick }}
+      placement="bottomRight"
+      arrow
+    >
       <Avatar shape="square" size={40} icon={<UserOutlined />} />
     </Dropdown>
   );

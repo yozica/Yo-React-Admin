@@ -1,9 +1,8 @@
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { useEffect, useState } from "react";
 import { Layout, Menu, Button } from "antd";
+import { ItemType } from "antd/es/menu/hooks/useItems";
+import { getUserMenu } from "@/api/user";
+import { formatMenu } from "./menuFn";
 import "./side.css";
 
 function YoSide({
@@ -17,6 +16,22 @@ function YoSide({
   colorBgContainer: string;
   collapsedWidth: number;
 }) {
+  const [menuList, setMenuList] = useState<ItemType[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const { data: res } = await getUserMenu();
+      const newMenuList = formatMenu(res);
+      setMenuList(newMenuList);
+    })();
+  }, []);
+
+  const menuClickHandler = ({ key }: { key: string }) => {
+    console.log(key);
+    // console.log(keyPath);
+    // console.log(domEvent);
+  };
+
   return (
     <Layout.Sider
       trigger={null}
@@ -28,6 +43,7 @@ function YoSide({
         background: colorBgContainer,
         position: collapsedWidth === 0 ? "absolute" : "relative",
         zIndex: 1,
+        userSelect: "none",
       }}
     >
       <div
@@ -40,23 +56,8 @@ function YoSide({
         mode="inline"
         defaultSelectedKeys={["1"]}
         className="w-full flex-1"
-        items={[
-          {
-            key: "1",
-            icon: <UserOutlined />,
-            label: "nav 1",
-          },
-          {
-            key: "2",
-            icon: <VideoCameraOutlined />,
-            label: "nav 2",
-          },
-          {
-            key: "3",
-            icon: <UploadOutlined />,
-            label: "nav 3",
-          },
-        ]}
+        items={menuList}
+        onClick={menuClickHandler}
       />
       {collapsedWidth === 0 && (
         <Button
