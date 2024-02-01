@@ -1,14 +1,25 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import Layout from "@/layout/layout";
-import Login from "@/view/login/login";
 import NotFound from "@/view/error/404";
+import Login from "@/view/login/login";
+import YoLayout from "@/layout/layout";
+import Home from "@/view/home/home";
+import Devices from "@/view/devices/devices";
 
-const menuRoutes: RouteObject[] = [];
+const menuRoutes: RouteObject[] = [
+  {
+    index: true,
+    Component: Home,
+  },
+  {
+    path: "devices",
+    Component: Devices,
+  },
+];
 
 const routes: RouteObject[] = [
   {
     path: "/",
-    Component: Layout,
+    Component: YoLayout,
     children: menuRoutes,
   },
   {
