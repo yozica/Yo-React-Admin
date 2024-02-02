@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Layout, Menu, Button } from "antd";
 import { ItemType } from "antd/es/menu/hooks/useItems";
 import { getUserMenu } from "@/api/user";
@@ -10,12 +11,16 @@ function YoSide({
   setCollapsed,
   colorBgContainer,
   collapsedWidth,
+  pathname,
 }: {
   collapsed: boolean;
   setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
   colorBgContainer: string;
   collapsedWidth: number;
+  pathname: string;
 }) {
+  const navigate = useNavigate();
+
   const [menuList, setMenuList] = useState<ItemType[]>([]);
 
   useEffect(() => {
@@ -26,10 +31,14 @@ function YoSide({
     })();
   }, []);
 
-  const menuClickHandler = ({ key }: { key: string }) => {
-    console.log(key);
-    // console.log(keyPath);
-    // console.log(domEvent);
+  const menuClickHandler = ({
+    keyPath,
+  }: {
+    key: string;
+    keyPath: string[];
+  }) => {
+    const path = keyPath.reverse().join("");
+    navigate(path);
   };
 
   return (
@@ -54,7 +63,18 @@ function YoSide({
       </div>
       <Menu
         mode="inline"
-        defaultSelectedKeys={["1"]}
+        selectedKeys={[
+          ...pathname
+            .slice(1)
+            .split("/")
+            .map((item) => "/" + item),
+        ]}
+        defaultOpenKeys={[
+          ...pathname
+            .slice(1)
+            .split("/")
+            .map((item) => "/" + item),
+        ]}
         className="w-full flex-1"
         items={menuList}
         onClick={menuClickHandler}

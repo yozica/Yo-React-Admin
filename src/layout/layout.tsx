@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Layout, theme } from "antd";
 import YoSide from "./Side/side";
 import YoHeader from "./Header/header";
 import YoMain from "./Main/main";
 
 function YoLayout() {
+  const location = useLocation();
+
   const [collapsed, setCollapsed] = useState(
     window.innerWidth < 1200 ? true : false
   );
@@ -40,12 +43,14 @@ function YoLayout() {
         setCollapsed={setCollapsed}
         colorBgContainer={colorBgContainer}
         collapsedWidth={collapsedWidth}
+        pathname={location.pathname}
       ></YoSide>
       <Layout>
         <YoHeader
           collapsed={collapsed}
           setCollapsed={setCollapsed}
           colorBgContainer={colorBgContainer}
+          pathname={location.pathname}
         ></YoHeader>
         <YoMain colorBgContainer={colorBgContainer}></YoMain>
       </Layout>

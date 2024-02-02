@@ -5,6 +5,8 @@ export interface ResType<T> {
   data: T;
 }
 
+/* 侧边栏菜单Type开始 */
+
 // dashed 表示是否虚线 默认false
 export interface YoMenuDividerType {
   type: "divider";
@@ -32,7 +34,7 @@ export interface YoMenuType {
   disabled?: boolean;
 }
 
-// key      是唯一键
+// key      是唯一键 在此处建议指代路由对应的本级path,不建议设置为'/'
 // icon     是菜单图标
 // label    是菜单名
 // disabled 表示是否禁用 默认为false
@@ -51,3 +53,5 @@ export type YoMenuItemType =
   | YoSubMenuType
   | YoMenuGroupType
   | YoMenuDividerType;
+
+/* 侧边栏菜单Type结束 */
