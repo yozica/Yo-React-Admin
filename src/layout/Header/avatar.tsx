@@ -12,7 +12,7 @@ function YoAvatar() {
         message.warning("该功能还未实现，请联系开发者");
         break;
       case "github":
-        window.open("https://github.com/yozica/Yo-Vue3-Admin", "yo-vue3-admin");
+        window.open("https://github.com/yozica/Yo-React-Admin", "yo-react-admin");
         break;
       case "logout":
         navigate("/login");

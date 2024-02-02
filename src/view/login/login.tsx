@@ -7,7 +7,7 @@ function Login() {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
 
-  const href = "https://github.com/yozica/Yo-Vue3-Admin";
+  const href = "https://github.com/yozica/Yo-React-Admin";
 
   const [loginForm, setLoginForm] = useState({
     username: "",
@@ -27,13 +27,13 @@ function Login() {
   return (
     <div
       id="loginContainer"
-      className="relative flex justify-evenly items-center gap-[100px] w-[100vw] h-[100vh] px-[10vw]"
+      className="relative flex justify-evenly items-center gap-[100px] w-[100vw] h-[100vh] px-[10vw] [@media(max-width:800px)]:flex-col [@media(max-width:800px)]:justify-center [@media(max-width:800px)]:gap-[10vh]"
     >
       {contextHolder}
       <div id="logoArea">
         <h1
           id="title"
-          className="relative font-bold text-[80px] before:absolute before:left-0 before:top-0 before:w-[80%] before:h-[100%] before:bg-gradient-to-r before:from-purple-500 before:to-pink-500 before:z-[-1] before:blur-[70px]"
+          className="relative font-bold text-[80px] before:absolute before:left-0 before:top-0 before:w-[80%] before:h-[100%] before:bg-gradient-to-r before:from-purple-500 before:to-pink-500 before:z-[-1] before:blur-[70px] [@media(max-width:800px)]:before:w-full"
         >
           Yozica Admin
         </h1>
