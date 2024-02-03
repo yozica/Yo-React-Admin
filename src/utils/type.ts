@@ -1,9 +1,20 @@
-// axios接口返回值
+/* fetch请求Type开始 */
+
+export interface RequestType {
+  method: "GET" | "Post";
+  url: string;
+  header?: { [key: string]: string };
+  data?: unknown;
+}
+
+// fetch接口返回值
 export interface ResType<T> {
-  code: 0 | 1;
+  code: "200" | "400";
   msg: string;
   data: T;
 }
+
+/* fetch请求Type结束 */
 
 /* 侧边栏菜单Type开始 */
 
