@@ -12,14 +12,18 @@ type breadcrumbFnType = (
   navigate: NavigateFunction
 ) => ItemType[];
 
+// 该函数通过router中的routesMap与当前的路由生成antd面包屑组件所需的ItemType数组
 export const breadcrumbFn: breadcrumbFnType = (pathname, navigate) => {
   const pathArr =
     pathname === "/" ? ["/"] : pathname.split("/").map((item) => "/" + item);
 
   const items: ItemType[] = [];
 
+  let nowPath = "";
   for (let i = 0; i < pathArr.length; i++) {
     const path = pathArr[i];
+    nowPath += path;
+    const newPath = nowPath.slice(1) === "" ? "/" : nowPath.slice(1);
 
     if (i === pathArr.length - 1) {
       items.push({
@@ -29,10 +33,10 @@ export const breadcrumbFn: breadcrumbFnType = (pathname, navigate) => {
       const item: ItemType = {};
       item.title = routesMap[path]?.title || "undefined";
       if (routesMap[path]?.isLink || false) {
-        item.href = path;
+        item.href = newPath;
         item.onClick = (e) => {
           e.preventDefault();
-          navigate(path);
+          navigate(newPath);
         };
       }
       if (routesMap[path]?.menu || false) {
